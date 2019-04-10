@@ -53,8 +53,8 @@ void Brain::integrate(int Nrun) {
       double t2;
       t2 = MPI_Wtime();
       if (!me)
-        printf("Step %i, time lapsed = %g sec, speed = %g steps/sec \n",
-               step, t2 - t0, float(Nlog)/(t2-t1) );
+        printf("Step %i, time lapsed = %g sec, speed = %g sec/steps \n",
+               step, t2 - t0, (t2-t1)/float(Nlog));
       t1 = t2;
     }
 
@@ -63,8 +63,8 @@ void Brain::integrate(int Nrun) {
   MPI_Barrier(world);
   t1 = MPI_Wtime();
   if (!me)
-    printf("Final step, total iterations = %i, total time lapsed = %g sec, speed = %g steps/sec \n",
-           Nrun, t1 - t0, float(Nrun)/(t1-t0) );
+    printf("Final step, total iterations = %i, total time lapsed = %g sec, speed = %g sec/steps \n",
+           Nrun, t1 - t0, (t1-t0)/float(Nrun));
 
 }
 
